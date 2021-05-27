@@ -1,6 +1,8 @@
 const menuBuilder = require('ussd-menu-builder');
 const express = require('express');
 const bodyParser = require('body-parser');
+
+//create an instance of ussd-menu-builder menu
 let menu = new menuBuilder();
 
 const app = express();
@@ -33,8 +35,7 @@ menu.startState({
 //Get user's first name
 menu.state('Next', {
     run: () => {
-        menu.con('Enter first name');
-        
+        menu.con('Enter first name');        
     },
     next: {
         '*[a-zA-Z]+': 'secondname'
@@ -43,11 +44,9 @@ menu.state('Next', {
 
 //Get user's second name
 menu.state('secondname', {
-    run: () => {
-        
+    run: () => { 
         menu.con('Enter your second name');
-        fname = String(menu.val);
-        
+        fname = String(menu.val);        
     },
     next: {
         '*[a-zA-Z]+': 'age'
@@ -56,11 +55,9 @@ menu.state('secondname', {
 
 //Get user's age
 menu.state('age', {
-    run: () => {
-        
+    run: () => {       
         menu.con('Enter your age');
-        sname = String(menu.val);
-        
+        sname = String(menu.val)        
     },
     next: {
         '*\\d+': 'terminate'
@@ -74,7 +71,7 @@ menu.state('terminate', {
         if(age<=60){
             menu.end('Your name is: '+ fname + ' ' + sname + ' ' + '\nYour age is: '+ age + '\nContinue working!');
         }else{
-            menu.end('Your name is: '+ fname + ' ' + sname + ' ' + '\nYour age is: '+ age + '\nRetire!');
+            menu.end('Your name is: '+ fname + ' ' + sname + ' ' + '\nYour age is: '+ age + '\nPlease retire!');
         }
         
         
