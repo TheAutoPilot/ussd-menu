@@ -1,7 +1,7 @@
 # ussd-menu
 A simple menu using ussd-menu-builder
 
-#Prerequisites
+# Prerequisites
 1. nodejs
 2. Africastalking account
 3. Ngrok 
